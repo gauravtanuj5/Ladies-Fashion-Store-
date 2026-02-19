@@ -670,8 +670,38 @@
 </footer>
 
 <script>
-    displayProducts();
-</script>
+const products = [
+    {id:1, name:"Floral Summer Dress", price:1499, oldPrice:1999, image:"https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500"},
+    {id:2, name:"Stylish Heels", price:1299, oldPrice:1799, image:"https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=500"},
+    {id:3, name:"Elegant Handbag", price:999, oldPrice:1499, image:"https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500"},
+    {id:4, name:"Party Gown", price:2499, oldPrice:3499, image:"https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500"}
+];
 
-</body>
-</html>
+let cart = [];
+
+const productGrid = document.getElementById("productGrid");
+
+function displayProducts() {
+    productGrid.innerHTML = "";
+    products.forEach(product => {
+        productGrid.innerHTML += `
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="${product.image}" alt="${product.name}">
+                    <span class="product-badge">Sale</span>
+                </div>
+                <div class="product-info">
+                    <h3>${product.name}</h3>
+                    <div class="product-price">
+                        <span class="new-price">₹${product.price}</span>
+                        <span class="old-price">₹${product.oldPrice}</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        `;
+    });
+}
+
+displayProducts();
+</script>
