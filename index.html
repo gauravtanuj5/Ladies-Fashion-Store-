@@ -684,22 +684,22 @@ const productGrid = document.getElementById("productGrid");
 function displayProducts() {
     productGrid.innerHTML = "";
     products.forEach(product => {
-        productGrid.innerHTML += `
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="${product.image}" alt="${product.name}">
-                    <span class="product-badge">Sale</span>
-                </div>
-                <div class="product-info">
-                    <h3>${product.name}</h3>
-                    <div class="product-price">
-                        <span class="new-price">₹${product.price}</span>
-                        <span class="old-price">₹${product.oldPrice}</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
+       productGrid.innerHTML += `
+    <div class="product-card">
+        <div class="product-image">
+            <img src="${product.image}" alt="${product.name}">
+            <span class="product-badge">Sale</span>
+        </div>
+        <div class="product-info">
+            <h3>${product.name}</h3>
+            <div class="product-price">
+                <span class="new-price">₹${product.price}</span>
+                <span class="old-price">₹${product.oldPrice}</span>
             </div>
-        `;
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+`;
     });
 }
 
