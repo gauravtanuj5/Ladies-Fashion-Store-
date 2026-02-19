@@ -696,11 +696,16 @@ function displayProducts() {
                 <span class="new-price">₹${product.price}</span>
                 <span class="old-price">₹${product.oldPrice}</span>
             </div>
-            <button class="add-to-cart">Add to Cart</button>
+            <button class="add-to-cart" onclick="addToCart(${product.id})">Add to Cart</button>
         </div>
     </div>
 `;
     });
+}
+
+    function addToCart(id) {
+    const product = products.find(p => p.id === id);
+    alert(product.name + " added to cart!");
 }
 
 displayProducts();
