@@ -1,0 +1,139 @@
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-lock"></i>
+                <h3>Secure Payment</h3>
+                <p>100% safe & secure</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Pretty Girl is your one-stop shop for all ladies fashion needs. We provide trendy, stylish, and affordable products just for women.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">Offers</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Pretty Girl | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-total">
+            <h3>Total: <span id="cartTotal">₹0</span></h3>
+            <button class="btn" style="width:100%">Checkout</button>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">Item added to cart!</div>
+
+    <script>
+        const products = [
+            {id:1, name:"Floral Summer Dress", price:1499, oldPrice:1999, image:"https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500"},
+            {id:2, name:"Stylish Heels", price:1299, oldPrice:1799, image:"https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=500"},
+            {id:3, name:"Elegant Handbag", price:999, oldPrice:1499, image:"https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500"},
+            {id:4, name:"Party Gown", price:2499, oldPrice:3499, image:"https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500"}
+        ];
+
+        let cart = [];
+
+        const productGrid = document.getElementById("productGrid");
+        const cartCount = document.getElementById("cartCount");
+        const cartItems = document.getElementById("cartItems");
+        const cartTotal = document.getElementById("cartTotal");
+        const notification = document.getElementById("notification");
+
+        function displayProducts() {
+            products.forEach(product => {
+                productGrid.innerHTML += `
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="${product.image}" alt="${product.name}">
+                            <span class="product-badge">Sale</span>
+                        </div>
+                        <div class="product-info">
+                            <h3>${product.name}</h3>
+                            <div class="product-price">
+                                <span class="new-price">₹${product.price}</span>
+                                <span class="old-price">₹${product.oldPrice}</span>
+                            </div>
+                            <div class="rating">
+                                ★★★★☆
+                            </div>
+                            <button class="add-to-cart" onclick="addToCart(${product.id})">Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            cart.push(product);
+            updateCart();
+            showNotification();
+        }
+
+        function updateCart() {
+            cartCount.textContent = cart.length;
+            cartItems.innerHTML = "";
+            let total = 0;
+
+            cart.forEach(item => {
+                total += item.price;
+                cartItems.innerHTML += `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-info">
+                            <h4>${item.name}</h4>
+                            <p>₹${item.price}</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            cartTotal.textContent = "₹" + total;
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById("cartModal");
+            modal.style.display = modal.style.display === "block" ? "none" : "block";
+        }
+
+        function showNotification() {
+            notification.classList.add("show");
+            setTimeout(() => {
+                notification.classList.remove("show");
+            }, 2000);
+        }
+
+        displayProducts();
+    </script>
+</body>
+</html>
